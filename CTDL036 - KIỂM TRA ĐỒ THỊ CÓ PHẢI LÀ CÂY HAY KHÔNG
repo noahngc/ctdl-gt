@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+int xet[1001];
+int check(vector<vector<int>>g,int u, int cha){
+	xet[u]=1;
+	for(int x:g[u]){
+		if(xet[x]==1){
+			if(x!=cha) return 0;
+		}else{
+			if(check(g,x,u)==0) return 0;
+		}
+	}
+	return 1;
+}
+int main(){
+	int t; cin>>t;
+	while(t--){
+		memset(xet,0,sizeof(xet));
+		int n; cin>>n;
+		vector<vector<int>> g(n+1);
+		for(int i=1;i<n;i++){
+			int a,b; cin>>a>>b;
+			g[a].push_back(b);
+			g[b].push_back(a);
+		}
+		if(check(g,1,0)){
+			cout<<"YES"<<endl;
+		}else{
+			cout<<"NO"<<endl;
+		}
+	}
+}
