@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+int xet[1001], truoc[1001];
+void dfs(int r,int d,vector<vector<int>> g){
+	xet[r]=1;
+	for(int x:g[r]){
+		if(xet[x]==0){
+			truoc[x]=r;
+			dfs(x,d,g);
+		}
+	}
+}
+int main(){
+	int t; cin>>t;
+	while(t--){
+		int v,e,r,d;
+		memset(xet,0,sizeof(xet));
+		memset(truoc,0,sizeof(truoc));
+		cin>>v>>e>>r>>d;
+		vector<vector<int>> g(v+1);
+		for(int i=0;i<e;i++){
+			int a,b;
+			cin>>a>>b;
+			g[a].push_back(b);
+			g[b].push_back(a);
+		}
+		dfs(r,d,g);
+		int na=d;
+		vector<int> k;
+		while(d!=0){
+			k.push_back(d);
+			d=truoc[d];
+		}
+		if(truoc[d]==0){
+			cout<<-1<<endl;
+		}else{
+			for(int i=k.size()-1;i>=0;i--){
+				cout<<k[i]<<" ";
+			}
+			cout<<endl;
+		}
+	}
+}
