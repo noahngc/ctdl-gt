@@ -27,9 +27,9 @@ int main(){
 		dfs(r,d,g);
 		int na=d;
 		vector<int> k;
-		while(d!=0){
-			k.push_back(d);
-			d=truoc[d];
+		while(na!=0){
+			k.push_back(na);
+			na=truoc[na];
 		}
 		if(truoc[d]==0){
 			cout<<-1<<endl;
