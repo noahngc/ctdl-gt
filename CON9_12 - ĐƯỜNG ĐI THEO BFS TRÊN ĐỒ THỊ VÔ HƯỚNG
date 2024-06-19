@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+int xet[1001],truoc[1001];
+int main(){
+	int t; cin>>t;
+	while(t--){
+		memset(xet,0,sizeof(xet));
+		memset(truoc,0,sizeof(truoc));
+		int v,e,r,d; cin>>v>>e>>r>>d;
+		vector<vector<int>> g(v+1);
+		for(int i=0;i<e;i++){
+			int a,b; cin>>a>>b;
+			g[a].push_back(b);
+			g[b].push_back(a);
+		}
+		xet[r]=1;
+		queue<int> q;
+		q.push(r);
+		while(q.empty()==0){
+			for(int x:g[q.front()]){
+				if(xet[x]==0){
+					xet[x]=1;
+					truoc[x]=q.front();
+					q.push(x);
+				}
+			}
+			q.pop();
+		}
+		int na=d;
+		vector<int>k;
+		if(truoc[d]==0){
+			cout<<-1<<endl;
+		}else{
+			while(na!=0){
+				k.push_back(na);
+				na=truoc[na];
+			}
+		}
+		for(int i=k.size()-1;i>=0;i--){
+			cout<<k[i]<<" ";
+		}
+		cout<<endl;
+	}
+}
