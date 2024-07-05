@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+int nut(int root,vector<int> a[]){
+	if(a[root].size()==0) return 0;
+	if(a[root].size()==1) return -1;
+	
+	int k1=nut(a[root][0],a);
+	if(k1==-1) return -1;
+	
+	int k2=nut(a[root][1],a);
+	if(k2==-1) return -1;
+	
+	if(k1==k2) return k1+1;
+	return -1;
+}
+int main(){
+	int t;cin>>t;
+	while(t--){
+		int n; cin>>n;
+		vector<int> a[10001]={};
+		int ok=0;
+		int root;
+		while(n--){
+			int u,v;
+			char x;
+			cin>>u>>v>>x;
+			if(ok==0){
+				root=u;
+				ok=1;
+			}
+			if(x=='L'){
+				if(a[u].size()>0){
+					int e=a[u][0];
+					a[u].pop_back();
+					a[u].push_back(v);
+					a[u].push_back(e);
+				}else{
+					a[u].push_back(v);
+				}
+			}else{
+				a[u].push_back(v);
+			}
+		}
+		if(nut(root,a)==-1){
+			cout<<0<<endl;
+		}else{
+			cout<<1<<endl;
+		}
+	}
+}
