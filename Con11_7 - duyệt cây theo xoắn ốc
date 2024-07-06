@@ -42,20 +42,72 @@ int main(){
 					s.push(k);
 				}
 			}
-			stack<int> st;
 			while(s.empty()==0){
 				int r=s.top();
 				s.pop();
 				for(int k=a[r].size()-1;k>=0;k--){
 					cout<<a[r][k]<<" ";
-					st.push(a[r][k]);
+					q.push(a[r][k]);
 				}
-			}
-			while(st.empty()==0){
-				q.push(st.top());
-				st.pop();
 			}
 		}
 		cout<<endl;
 	}
 }
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main(){
+//	int t;cin>>t;
+//	while(t--){
+//		int n; cin>>n;
+//		vector<int> a[10001]={};
+//		int ok=0;
+//		int root;
+//		while(n--){
+//			int u,v;
+//			char x;
+//			cin>>u>>v>>x;
+//			if(ok==0){
+//				root=u;
+//				ok=1;
+//			}
+//			if(x=='L'){
+//				if(a[u].size()>0){
+//					int e=a[u][0];
+//					a[u].pop_back();
+//					a[u].push_back(v);
+//					a[u].push_back(e);
+//				}else{
+//					a[u].push_back(v);
+//				}
+//			}else{
+//				a[u].push_back(v);
+//			}
+//		}
+//		queue<int> q;
+//		q.push(root);
+//		cout<<root<<" ";
+//		while(q.empty()==0){
+//			vector<int> v;
+//			while(q.empty()==0){
+//				int na=q.front();
+//				for(int i=0;i<a[na].size();i++){
+//					int e=a[na][i];
+//					v.push_back(e);
+//					cout<<e<<" ";
+//				}
+//				q.pop();
+//			}
+//			for(int i=v.size()-1;i>=0;i--){
+//				int e=v[i];
+//				for(int j=a[e].size()-1;j>=0;j--){
+//					int ge=a[e][j];
+//					cout<<ge<<" ";
+//					q.push(ge);
+//				}
+//			}
+//		}
+//		cout<<endl;
+//	}
+//}
